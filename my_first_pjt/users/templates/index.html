@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
+
 
 
 {% block content %}
@@ -8,26 +8,29 @@
 
     <h1> Welcome to my world </h1>
     <p> I`m kkkkkkkkqueen </p>
+
+    <a href="{% url 'profile' %}">Profile</a>  
+
+
+    <a href="{% url 'login' %}">Login</a>
+
     
-
-
-<img src="{% static 'images/queen.jpg' %}" alt="My Image">
 
 
     <form action="" method="GET">
 <ul>
-<li>  
+ 
     <label for="message"> ID </label>
     <input type="text" id="message" name="message">
 
-    <button type="submit"> OK </button>
-</li>     
-<li>
+    
+    
+
         <label for="message"> PW </label>
         <input type="text" id="message" name="message">
 
         <button type="submit"> OK </button>
-</li>
+
     </ul>
     </form>
  

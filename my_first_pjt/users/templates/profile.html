@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+   
+
+
+<h1>{{ name }} `s Page</h1>
+    
+    
+
+{% endblock content %}
+
+
+{% extends "base.html" %}
+
+{% block content %}
+		<h1>{{ username }}의 프로필 페이지</h1>
+
+        <img src="{% static 'images/queen.jpg' %}" alt="My Image">
+		
+		<div>
+			<h2>username : {{ username }}</h2>
+		</div>
+		
+		<a href="{% url 'logout' %}">Log out</a>
+		
+{% endblock content %}
