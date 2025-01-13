@@ -72,6 +72,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'my_first_pjt.wsgi.application'
 
 
+# static 파일(CSS, JavaScript, 이미지 등)은 이 url에서 제공됨
+STATIC_URL = '/static/'
+
+# 개발 환경에서 static 파일들이 위치한 추가 경로 정의
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  
+]
+
+
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
