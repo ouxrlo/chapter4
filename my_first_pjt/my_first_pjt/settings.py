@@ -77,7 +77,7 @@ STATIC_URL = '/static/'
 
 # 개발 환경에서 static 파일들이 위치한 추가 경로 정의
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  
+    (BASE_DIR / "static"),  
 ]
 
 
@@ -132,13 +132,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# 이미지
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 

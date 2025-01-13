@@ -18,9 +18,5 @@ class CustomUser(AbstractUser):
 
 ## 이미지 경로 저장
 
-class Product(models.Model):
-    name = models.CharField(max_length=100)
-    image_path = models.CharField(max_length=255)  
-
-    def __str__(self):
-        return self.name
+class MyModel(models.Model):
+    image = models.ImageField(upload_to='static/images/')  # 'images/' 폴더 안에 이미지를 업로드
