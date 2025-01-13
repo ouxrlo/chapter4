@@ -4,4 +4,5 @@ def index(request):
     return render(request, 'index.html')
 
 def users(request):
-    return render(request, 'users.html')
+    context = {'name' : 'ouxrlo'}
+    return render(request, 'users.html', context)
