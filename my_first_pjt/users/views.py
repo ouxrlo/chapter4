@@ -6,3 +6,6 @@ def index(request):
 def users(request):
     context = {'name' : 'ouxrlo'}
     return render(request, 'users.html', context)
+
+def login(request):
+    return render(request, 'login.html')
