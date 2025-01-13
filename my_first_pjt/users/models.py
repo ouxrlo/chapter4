@@ -4,9 +4,9 @@ from django.db import models
 
 class CustomUser(AbstractUser):
 
-    # 프로필 이미지 
+    # # 프로필 이미지 
     profile_image = models.ImageField(upload_to='aaa.jpg/', null=True, blank=True)
-    
+
     # 소개글 
     bio = models.TextField(null=True, blank=True)
 
