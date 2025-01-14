@@ -24,4 +24,5 @@ urlpatterns = [
     path('users/', views.users,name='users'),
     path('users/<str:username>', views.profile,name='users_profile'),
     path('users/', include('users.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
