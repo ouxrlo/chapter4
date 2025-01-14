@@ -5,34 +5,30 @@
 {% block content %}
 
 
+    <h1>Welcome to my world</h1>
+    <p>I'm kkkkkkkkqueen</p>
 
-    <h1> Welcome to my world </h1>
-    <p> I`m kkkkkkkkqueen </p>
-
-    <a href="{% url 'profile' %}">Profile</a>  
-
-
-    <a href="{% url 'login' %}">Login</a>
-
-    
-
-
-    <form action="{% url 'profile' %}" method="GET">
-<ul>
  
-    <label for="message"> ID </label>
-    <input type="text" id="message" name="message">
 
-    
-    
 
-        <label for="message"> PW </label>
-        <input type="text" id="message" name="message">
-
-        <button type="submit"> OK </button>
-
+<!-- Login Form -->
+<form action="{% url 'users:profile' %}" method="POST">
+    {% csrf_token %}
+    <ul>
+        
+            <label for="username">ID</label>
+            <input type="text" id="username" name="username" required>
+        
+        
+            <label for="password">PW</label>
+            <input type="password" id="password" name="password" required>
+        
+            <a href="{% url 'users:login' %}"><button type="submit">Login</button></a>
+            
+        
     </ul>
-    </form>
+</form>
+
  
     
     

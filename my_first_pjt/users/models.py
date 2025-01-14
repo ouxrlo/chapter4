@@ -2,11 +2,18 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+class User(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+
+    
+    def __str__(self):
+        return self.title 
+
 class CustomUser(AbstractUser):
 
-    # # 프로필 이미지 
-    profile_image = models.ImageField(upload_to='queen.jpg/', null=True, blank=True)
-
+    birthday = models.DateField(null=True, blank=True)
+    profile_image = models.ImageField(upload_to='profile_pics/', null=True, blank=True) 
     # 소개글 
     bio = models.TextField(null=True, blank=True)
 

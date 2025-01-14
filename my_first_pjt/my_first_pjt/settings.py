@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'users',
     'accounts',
 
@@ -115,6 +116,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+
+## login
+
+LOGIN_REDIRECT_URL = 'profile' 
 
 
 # Internationalization
