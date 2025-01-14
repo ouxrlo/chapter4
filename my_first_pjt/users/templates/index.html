@@ -1,16 +1,14 @@
 {% extends "base.html" %}
-
+{% load static %}
 
 
 {% block content %}
 
 
+<form>
     <h1>Welcome to my world</h1>
 
- 
-
-<form action="{% url 'users:profile' %}" method="POST">
-    {% csrf_token %}
+    <img src="{% static 'images/zzan.jpeg' %}" alt="홈 이미지">
     
 </form>
 
