@@ -1,62 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1> Let's be friends </h1>
 
-<!-- 사용자 정의 form을 사용한 회원 가입 폼 -->
-<form method="POST" enctype="multipart/form-data" class="signup-form">
+
+<h1> Join </h1>
+
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    
-    <!-- 필드 항목을 하나씩 보여줍니다. -->
-    <div class="form-group">
-        {{ form.username|as_crispy_field }}
-    </div>
-    
-    <div class="form-group">
-        {{ form.password|as_crispy_field }}
-    </div>
-
-    <div class="form-group">
-        {{ form.email|as_crispy_field }}
-    </div>
-
-    <!-- 프로필 사진 필드 (optional) -->
-    <div class="form-group">
-        {{ form.profile_image|as_crispy_field }}
-    </div>
-    
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">회원 가입</button>
-    </div>
+    {{ form.as_p }}
+    <button type="submit"> Join </button>
 </form>
 
-<!-- 스타일을 넣어 폼을 더 이쁘게 만들기 위한 기본 스타일 (optional) -->
-<style>
-    .signup-form {
-        max-width: 400px;
-        margin: 0 auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-    }
-    .form-group {
-        margin-bottom: 15px;
-    }
-    .form-group input,
-    .form-group button {
-        width: 100%;
-        padding: 10px;
-        margin: 5px 0;
-        border-radius: 5px;
-    }
-    .form-group button {
-        background-color: #1357b6;
-        color: white;
-        border: none;
-    }
-    .form-group button:hover {
-        background-color: #2d5eca;
-    }
-</style>
+
+
+
+
+
+
 {% endblock %}
