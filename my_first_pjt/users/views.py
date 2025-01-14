@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout as auth_logout
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
-from .models import UserProfile
 
 
 
@@ -21,10 +19,7 @@ def profile(request):
     return render(request, 'users/profile.html', {'user': user})
 
 
-@login_required 
-def profile_view(request):
-    userProfile = get_object_or_404(UserProfile, user=request.user) 
-    return render(request, 'profile.html', {'profile': UserProfile, 'user': request.user})
+
 
 @require_POST
 def login_view(request):
