@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
+from .models import UserProfile
+
+
 
 def index(request):
     return render(request, 'index.html')
+
 
 def users(request):
     context = {'name' : 'ouxrlo'}
@@ -11,9 +15,16 @@ def users(request):
 
 def profile(request):
     user = get_object_or_404('User', username='username')
-    return render(request, 'users/profile.html', {'user': user})   
-    
+    return render(request, 'users/profile.html', {'user': user})
 
+
+
+def profile_view(request):
+    user_profile = UserProfile.objects.get(user=request.user)  
+    return render(request, 'profile.html', {'profile': user_profile})
+
+
+    
 def login_view(request):
     if request.method == 'POST':
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
