@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser  
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 class CustomUser(AbstractUser):
     birthday = models.DateField(null=True, blank=True)
@@ -9,12 +9,18 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
-class UserProfile(models.Model):
-    user = models.OneToOneField('users.CustomUser', on_delete=models.CASCADE)  # 문자열로 참조
-    bio = models.TextField(blank=True, null=True)
 
-    def __str__(self):
-        return self.user.username
+# users/models.py
+from django.db import models
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # 추가 필드들
+
+
+
+
 
 
 
