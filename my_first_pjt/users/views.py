@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import get_user_model
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 
 
 
+User = get_user_model()
 
 
 def index(request):
@@ -13,7 +15,7 @@ def index(request):
 
 
 def users(request):
-    context = {'name' : 'users: name'}
+    context = {'name' : 'username'}
     return render(request, 'users.html', context)
 
 
@@ -25,7 +27,7 @@ def profile(request):
 @login_required
 def profile_view(request):
     userProfile = get_object_or_404(UserProfile, user=request.user)
-    return render(request, 'profile.html', {'profile': userProfile, 'user': request.user})
+    return render(request, 'profile.html', {'user': request.user})
 
 
 

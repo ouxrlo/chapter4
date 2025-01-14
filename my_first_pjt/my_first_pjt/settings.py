@@ -114,7 +114,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 ## login
 
-LOGIN_REDIRECT_URL = 'profile' 
+LOGIN_REDIRECT_URL = '/users/profile/'
 
 # media
 
@@ -153,3 +153,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+#
