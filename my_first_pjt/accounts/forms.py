@@ -16,7 +16,7 @@ User = get_user_model()
 class CustomSignupForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['username', 'email', 'password']
 
 
 

@@ -7,6 +7,7 @@ from .models import UserProfile
 
 
 
+
 User = get_user_model()
 
 
@@ -36,4 +37,8 @@ def login_view(request):
     if request.method == "POST":
         auth_logout(request)
     return redirect('index')
+
+
+def index(request):
+    return render(request, "index.html")
 

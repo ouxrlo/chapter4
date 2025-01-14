@@ -42,3 +42,9 @@ def signup_view(request):
     
     return render(request, 'accounts/signup.html', {'form': form})
 
+
+
+def delete(request):
+    if request.user.is_authenticated:
+        request.user.delete()
+    return redirect("index")

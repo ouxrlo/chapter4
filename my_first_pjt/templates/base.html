@@ -7,33 +7,35 @@
 </head>
 <body>
 
-
     <div class="navbar">
         {% if request.user.is_authenticated %}
-
+        
         <h1>Welcome to {{ user.username }}'s profile</h1>
-    <from action="{% url 'accounts:logout'}" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="Logout">
-    </from> 
-  
+        
+        <!-- Logout form -->
+        <form action="{% url 'accounts:logout' %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Logout">
+        </form> 
+        
+        <!-- Delete account form -->
+        <form action="{% url 'accounts:delete' %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="회원탈퇴">
+        </form>
 
         {% else %}
         
-             <a href="{% url 'accounts:login'%}">Login</a>
-             <a href="{% url 'accounts:signup'%}">Join</a>
-    
-        {% endif %}
+        <a href="{% url 'accounts:login' %}">Login</a>
+        <a href="{% url 'accounts:signup' %}">Join</a>
 
+        {% endif %}
     </div>
     
-   
-<div class="container">
-
-    {% block content %}
-    {% endblock content %}
-
-</div>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
 
 </body>
 </html>
