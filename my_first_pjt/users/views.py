@@ -3,7 +3,7 @@ from django.contrib.auth import logout as auth_logout
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
-from django.db import models
+
 
 
 
