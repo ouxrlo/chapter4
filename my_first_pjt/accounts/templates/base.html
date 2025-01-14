@@ -1,0 +1,13 @@
+{% block content %}
+
+
+<div class="navbar">
+    <a href="{% url 'accounts:login'%}">로그인</a>
+</div>
+
+<div class="container">
+    {% block content %}
+    {% endblock content %}
+</div>
+    
+{% endblock content %}

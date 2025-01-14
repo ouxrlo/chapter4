@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+
 from .models import UserProfile
 
 
@@ -10,7 +12,7 @@ def index(request):
 
 
 def users(request):
-    context = {'name' : 'ouxrlo'}
+    context = {'name' : 'users: name'}
     return render(request, 'users.html', context)
 
 
@@ -21,18 +23,12 @@ def profile(request):
 
 @login_required 
 def profile_view(request):
-    user_profile = get_object_or_404(UserProfile, user=request.user) 
-    return render(request, 'profile.html', {'profile': user_profile, 'user': request.user})
+    userProfile = get_object_or_404(UserProfile, user=request.user) 
+    return render(request, 'profile.html', {'profile': UserProfile, 'user': request.user})
 
-
-
+@require_POST
 def login_view(request):
-    if request.method == 'POST':
-        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
-        if user:
-            login(request, user)
-            next_url = request.GET.get('next', 'users:profile')  # 로그인 후 리디렉션할 URL
-            return redirect(next_url)
-        return render(request, 'users/login.html', {'error': 'Invalid login credentials'})
+    if request.method == "POST":
+        auth_logout(request)
+    return redirect('index')
 
-    return render(request, 'users/login.html')
