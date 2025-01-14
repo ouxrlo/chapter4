@@ -1,5 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     birthday = models.DateField(null=True, blank=True)
@@ -10,13 +12,11 @@ class CustomUser(AbstractUser):
         return self.username
 
 
-# users/models.py
-from django.db import models
-
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # 추가 필드들
+    
+
 
 
 

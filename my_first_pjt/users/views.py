@@ -1,18 +1,23 @@
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout as auth_logout
-from django.contrib.auth import login , logout, get_user_model
-from django.views.decorators.http import require_POST
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout, get_user_model
 from .models import UserProfile
-from .forms import CustomUserCreationForm
 
 
-User = get_user_model()
+
+
 
 
 def index(request):
     return render(request, 'index.html')
+
+
+def index_view(request):
+    return render(request, 'index.html') 
+
 
 
 def users(request):
@@ -50,13 +55,46 @@ def delete(request):
 
 
 
+
+
 def signup(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts:login')
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'users/signup.html', {'form': form})
+        username = request.POST['username']
+        password = request.POST['password']
+        email = request.POST.get('email', '')
+
+        
+        User = get_user_model()
+
+        
+        user = User.objects.create_user(username=username, password=password, email=email)
+
+        return HttpResponse(f"User {user.username} created successfully!")
+    return render(request, 'signup.html')
+
+
+
+
+
+
+User = get_user_model()
+
+def signup_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        email = request.POST['email']
+
+        # 사용자 생성
+        user = User.objects.create_user(username=username, password=password, email=email)
+        user.save()
+
+        # 회원 가입 성공 후 인덱스 페이지로 리디렉션
+        return redirect('index')  # 'index'는 인덱스 페이지에 대한 URL 패턴 이름입니다.
+
+    return render(request, 'accounts/signup.html')
+
+
+
+
 
