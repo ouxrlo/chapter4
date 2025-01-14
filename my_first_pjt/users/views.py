@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 
 
@@ -18,13 +19,13 @@ def profile(request):
     return render(request, 'users/profile.html', {'user': user})
 
 
-
+@login_required 
 def profile_view(request):
-    user_profile = UserProfile.objects.get(user=request.user)  
-    return render(request, 'profile.html', {'profile': user_profile})
+    user_profile = get_object_or_404(UserProfile, user=request.user) 
+    return render(request, 'profile.html', {'profile': user_profile, 'user': request.user})
 
 
-    
+
 def login_view(request):
     if request.method == 'POST':
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
