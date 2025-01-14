@@ -3,7 +3,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import UserCreationForm
-
+from .forms import CustomSignupForm
 
 
 def login(request):
@@ -31,12 +31,13 @@ def signup(request):
 
 def signup_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserCreationForm(request.FILES)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
+            user = form.save(commit=False)
+            user.save()
             return redirect('index')
     else:
-        form = UserCreationForm()
+        form = CustomSignupForm()
     
-    return render(request, 'accounts/signup.html', {'form':form})
+    return render(request, 'accounts/signup.html', {'form': form})
+
