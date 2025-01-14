@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomSignupForm
 
 
+
 def login(request):
     form = AuthenticationForm()
     context = {"form": form}
