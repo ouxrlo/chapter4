@@ -5,10 +5,12 @@
 
 <h1> Join </h1>
 
-<form method="post" enctype="multipart/form-data">
+
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit"> Join </button>
+    <button type="submit"> OK </button>
+
 </form>
 
 

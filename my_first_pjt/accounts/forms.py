@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-# from django.contrib.auth.models import User  # 이 코드는 사용하지 않음
+
 
 
 
@@ -20,7 +20,6 @@ class CustomSignupForm(forms.ModelForm):
 
 
 
-
 class CustomSignupForm(UserCreationForm):
     profile_picture = forms.ImageField(required=False, label="profile image")
     birth_date = forms.DateField(
@@ -32,3 +31,16 @@ class CustomSignupForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('profile_picture', 'username', 'email', 'password1', 'password2', 'birth_date')
+
+
+class SignUpForm(UserCreationForm):
+    profile_picture = forms.ImageField(required=False, label="Profile Image")
+    birth_date = forms.DateField(
+        required=True,
+        widget=forms.DateInput(attrs={'type': 'date'}),
+        label="Birth Date"
+    )
+
+    class Meta:
+        model = User
+        fields = ('profile_picture', 'username', 'email',  'birth_date', 'password1', 'password2',  'birth_date')

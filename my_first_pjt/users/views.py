@@ -1,11 +1,13 @@
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import CreateView
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import logout, get_user_model
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 from .models import UserProfile
-
+from .forms import CustomSignupForm
 
 
 
@@ -93,6 +95,17 @@ def signup_view(request):
         return redirect('index')  # 'index'는 인덱스 페이지에 대한 URL 패턴 이름입니다.
 
     return render(request, 'accounts/signup.html')
+
+
+class CustomSignupView(CreateView):
+    model = User
+    form_class = CustomSignupForm
+    template_name = 'accounts/signup.html'  # 회원가입 템플릿 경로
+    success_url = reverse_lazy('home')  # 회원가입 성공 후 이동할 URL
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return response
 
 
 
